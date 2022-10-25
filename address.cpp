@@ -1,13 +1,9 @@
 #include "address.h"
 
-Address::Address(std::string street, std::string city, std::string country, int postalCode)
+Address::Address(std::string street, std::string city, std::string country, int postalCode) : _street(street), _city(city), _country(country), _postalCode(postalCode)
 {
-    bool valid = isPostalCodeValid(postalCode);
-    assert(valid && "Postal code is not valid");
-    _street = street;
-    _city = city;
-    _country = country;
-    _postalCode = postalCode;    
+    bool status = isPostalCodeValid(postalCode);
+    assert(status && "Postal code is not valid");
 }
 std::string Address::getStreet()
 {
@@ -43,11 +39,9 @@ void Address::setPostalCode(int postalCode)
 }
 bool isPostalCodeValid(int postalCode)
 {
-    if(postalCode > 1000 && postalCode < 99999)
+    if (postalCode > 1000 && postalCode < 99999)
     {
         return true;
     }
     return false;
 }
-
-
